@@ -7,4 +7,4 @@
 </br>
 </br>
 
-`Springboot3` `mustache` `H2 DB` `lombok`
+`java` `Springboot3` `mustache` `H2 DB` `lombok`

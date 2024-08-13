@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Slf4j
@@ -38,5 +39,15 @@ public class ArticleController {
         // System.out.println(saved.toString());
         model.addAttribute("db", saved.toString());
         return "articles/create";
+    }
+
+    @GetMapping("/articles/{id}")
+    public String show(@PathVariable Long id, Model model) {
+        // 1. id를 조회해 데이터를 가져오기
+        Article articleEntity = articleRepository.findById(id).orElse(null);
+        // 2. 모델에 데이터 등록하기
+        model.addAttribute("article", articleEntity);
+        // 3. 뷰 페이지 반환하기
+        return "/articles/show";
     }
 }

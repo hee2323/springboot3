@@ -33,8 +33,7 @@ public class MemberController {
         Member saved = memberRepository.save(member);
         log.info(saved.toString());
         model.addAttribute("db", saved.toString());
-
-        return "members/joinSuccess";
+        return "redirect:/members/" + saved.getId();
     }
 
     @GetMapping("/members/{id}")

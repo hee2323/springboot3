@@ -31,17 +31,14 @@ public class ArticleController {
     @PostMapping("/articles/create")
     public String createArticle(ArticleForm form, Model model) {
         log.info(form.toString());
-        // System.out.println(form.toString());
         // 1. DTO를 entity로 변환
         Article article = form.toEntity();
         log.info(article.toString());
-        // System.out.println(article.toString());
         // 2. repository를 이용해 entity를 DB에 저장
         Article saved = articleRepository.save(article);
         log.info(saved.toString());
-        // System.out.println(saved.toString());
         model.addAttribute("db", saved.toString());
-        return "articles/create";
+        return "redirect:/articles/" + saved.getId(); // 리다이렉트 넣어줄 위치
     }
 
     @GetMapping("/articles/{id}")
